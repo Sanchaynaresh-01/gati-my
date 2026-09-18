@@ -101,7 +101,7 @@ const RegisterEvaluator = () => {
                   Join as an Evaluator
                 </h1>
                 <p className="mt-2 text-xs sm:text-sm text-blue-100 max-w-xl leading-relaxed">
-                  Evaluate student prototypes across 33 Assam districts using our standardized 7-criteria innovation rubric.
+                  Evaluate student prototypes across Assam using our standardized 7-criteria innovation rubric.
                 </p>
               </div>
 

@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect, useCallback, use
 import api from '../services/api';
 
 export const DEFAULT_COMPETITION_ROUNDS = [
-  { id: 'school_registration', step: '01', name: 'School Registration', dates: '17th - 30th Sep, 2026', desc: 'State-wide school onboarding across all 33 districts of Assam.', category: 'Registration' },
+  { id: 'school_registration', step: '01', name: 'School Registration', dates: '17th - 30th Sep, 2026', desc: 'State-wide school onboarding across Assam.', category: 'Registration' },
   { id: 'mentor_onboarding', step: '02', name: 'Mentor Onboarding', dates: '1st - 10th Oct, 2026', desc: 'Faculty and innovation teacher onboarding & orientation.', category: 'Orientation' },
   { id: 'team_formation', step: '03', name: 'Team Formation', dates: '10th - 15th Oct, 2026', desc: 'Mentor-led squad creation with student dossiers & photos.', category: 'Squad Formation' },
   { id: 'online_bootcamp', step: '04', name: '20h Online Bootcamp', dates: '15th - 22nd Oct, 2026', desc: 'Self-paced foundation learning in design thinking & STEM.', category: 'Foundation Learning' },

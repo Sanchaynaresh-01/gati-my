@@ -69,7 +69,7 @@ const Leaderboard = () => {
             Official State Leaderboard
           </h1>
           <p className="mt-3 text-sm sm:text-base text-slate-600 max-w-2xl mx-auto">
-            Real-time merit rankings based on 20-hour assessment benchmarks and official jury evaluations across all 33 districts of Assam.
+            Real-time merit rankings based on 20-hour assessment benchmarks and official jury evaluations across Assam.
           </p>
         </section>
 
@@ -105,7 +105,7 @@ const Leaderboard = () => {
                 onChange={(e) => setDistrictFilter(e.target.value)}
                 className="px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-50 border border-slate-200 text-slate-700 focus:outline-emerald-600"
               >
-                <option value="all">All 33 Districts</option>
+                <option value="all">All Districts (Across Assam)</option>
                 {ASSAM_DISTRICTS.filter(d => d !== 'All Districts').map((d) => (
                   <option key={d} value={d}>{d}</option>
                 ))}

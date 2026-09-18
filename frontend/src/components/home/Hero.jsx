@@ -246,7 +246,7 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-6 text-base sm:text-lg lg:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed"
           >
-            A state-wide innovation journey empowering students from <strong className="text-slate-900 font-semibold">Classes VI–XII</strong> across all 33 districts of Assam to identify real problems, develop practical solutions, build prototypes, learn from experts, and showcase ideas for a stronger Assam.
+            A state-wide innovation journey empowering students from <strong className="text-slate-900 font-semibold">Classes VI–XII</strong> across Assam to identify real problems, develop practical solutions, build prototypes, learn from experts, and showcase ideas for a stronger Assam.
           </motion.p>
 
           {/* Cultural & Wildlife Recognition Pill Strip (Visible on all viewports, especially mobile & tablet) */}
@@ -266,7 +266,7 @@ const Hero = () => {
             </span>
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-amber-50 text-amber-900 border border-amber-300/80 shadow-xs">
               <MapPin className="w-3.5 h-3.5 text-amber-600" />
-              <span>33 Assam Districts</span>
+              <span>Across Assam</span>
             </span>
           </motion.div>
 

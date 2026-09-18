@@ -42,7 +42,7 @@ const About = () => {
             </div>
             <h2 className="text-2xl font-bold text-slate-900">Our Mission</h2>
             <p className="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed">
-              To democratize innovation education across all 33 districts of Assam by equipping school students with modern STEM competencies, critical thinking frameworks, and problem-solving mentorship—ensuring no talented child is left behind regardless of geographical or economic boundaries.
+              To democratize innovation education across Assam by equipping school students with modern STEM competencies, critical thinking frameworks, and problem-solving mentorship—ensuring no talented child is left behind regardless of geographical or economic boundaries.
             </p>
           </div>
 
@@ -81,7 +81,7 @@ const About = () => {
             </div>
             <h3 className="text-xl font-bold text-slate-900">Who Can Participate?</h3>
             <p className="text-sm text-slate-600 mt-3 leading-relaxed">
-              Enrolled students from <strong>Classes VI to XII</strong> studying in recognized government schools, model schools, provincialized institutions, and affiliated private schools across all 33 districts of Assam.
+              Enrolled students from <strong>Classes VI to XII</strong> studying in recognized government schools, model schools, provincialized institutions, and affiliated private schools across Assam.
             </p>
           </div>
 

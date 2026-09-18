@@ -12,7 +12,7 @@ DEFAULT_ROUNDS = [
         "step": "01",
         "name": "School Registration",
         "dates": "17th - 30th Sep, 2026",
-        "desc": "State-wide school onboarding across all 33 districts of Assam.",
+        "desc": "State-wide school onboarding across Assam.",
         "category": "Registration"
     },
     {

@@ -21,7 +21,7 @@ const Journey = () => {
             The 6-Stage Innovation Odyssey
           </h1>
           <p className="mt-4 text-base sm:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            From initial registration across all 33 districts of Assam in September 2026 through foundation learning, district quotas, technical assessments, and the 5-day state hackathon to grand winners with IIT Delhi pathways.
+            From initial registration across Assam in September 2026 through foundation learning, district quotas, technical assessments, and the 5-day state hackathon to grand winners with IIT Delhi pathways.
           </p>
 
           {/* Quick Metrics Bar */}

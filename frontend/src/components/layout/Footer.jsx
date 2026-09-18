@@ -27,7 +27,7 @@ const Footer = () => {
               Assam Future Innovation Program
             </h3>
             <p className="text-sm text-slate-400 leading-relaxed max-w-md">
-              A state-wide innovation journey empowering students from Classes VI–XII across all 33 districts of Assam to identify real problems, develop practical solutions, and engineer prototypes for sustainable regional growth.
+              A state-wide innovation journey empowering students from Classes VI–XII across Assam to identify real problems, develop practical solutions, and engineer prototypes for sustainable regional growth.
             </p>
             <div className="flex items-center gap-2 text-xs text-amber-400 font-medium">
               <Sparkles className="w-3.5 h-3.5" />

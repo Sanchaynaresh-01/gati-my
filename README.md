@@ -26,7 +26,7 @@ An end-to-end, production-grade full-stack web application built for the **Assam
    - **Journey (`/journey`)**: Full 12-stage chronological schedule with funnel visualization.
    - **Guidelines (`/guidelines`)**: Rulebook, team formation rules, mentor duties, and 7-criteria rubric.
    - **Prizes & Awards (`/prizes`)**: Category VI-VIII, IX-X, XI-XII awards with official committee disclaimer.
-   - **State Leaderboard (`/leaderboard`)**: Real-time ranks filterable by category and all 33 Assam districts with admin privacy toggle.
+   - **State Leaderboard (`/leaderboard`)**: Real-time ranks filterable by category across Assam with admin privacy toggle.
    - **Innovations Gallery (`/innovations`)**: Public showcase of verified student prototypes.
 
 ---

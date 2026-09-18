@@ -740,7 +740,7 @@ def seed_database(app=None):
 
     # 14. Seed Initial Notifications
     notifications_data = [
-        ("all", None, "Welcome to AFIP 2026", "State-wide innovation registrations are now open for Classes VI-XII across all 33 districts of Assam.", "announcement"),
+        ("all", None, "Welcome to AFIP 2026", "State-wide innovation registrations are now open for Classes VI-XII across Assam.", "announcement"),
         ("school", school_user.inserted_id, "School Registration Approved", "Brahmaputra Public School has been officially registered with School Code AFIP-AS-KAM-00001.", "approval"),
         ("student", student_user.inserted_id, "Assessment Portal Live", "The 20-Hour Bootcamp Knowledge Assessment is now open for your team.", "quiz"),
         ("evaluator", evaluator_user.inserted_id, "Assigned for Evaluation", "You have 2 student project submissions queued in your review panel.", "assignment"),

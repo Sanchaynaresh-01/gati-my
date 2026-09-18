@@ -26,7 +26,7 @@ export const STAGES = [
     stageNumber: '1',
     title: 'Registrations',
     date: '17th to 30th September, 2026',
-    desc: 'State-wide school and student team registrations across all 33 districts of Assam. Mandatory onboarding for Classes 6–8, 9–10, and 11–12.',
+    desc: 'State-wide school and student team registrations across Assam. Mandatory onboarding for Classes 6–8, 9–10, and 11–12.',
     category: 'Registration',
     icon: SchoolIcon,
     color: 'emerald',

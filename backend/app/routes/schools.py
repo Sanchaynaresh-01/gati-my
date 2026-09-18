@@ -32,7 +32,7 @@ def register_school():
 
     district = data.get("district", "").strip()
     if not district or district not in ASSAM_DISTRICTS:
-        return api_error("VALIDATION_ERROR", "Invalid district. Please select one of the 33 official Assam districts.", status_code=400)
+        return api_error("VALIDATION_ERROR", "Invalid district. Please select a valid district across Assam.", status_code=400)
 
     # Validation
     required_fields = [

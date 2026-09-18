@@ -2,7 +2,10 @@ from datetime import datetime, timezone
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from app.utils.db import get_db, parse_object_id, serialize_doc
-from app.utils.helpers import api_response, api_error, hash_password, generate_school_id, generate_user_id, generate_mentor_id, generate_student_id
+from app.utils.helpers import (
+    api_response, api_error, hash_password, generate_school_id, generate_user_id,
+    generate_mentor_id, generate_student_id, get_next_sequence_value
+)
 from app.middleware.auth_middleware import role_required
 from app.utils.audit import log_audit_event
 from app.services.udise_service import UDISEVerificationService
@@ -72,7 +75,7 @@ def register_school():
         return api_error("DUPLICATE_EMAIL", "A school account with this official email already exists.", status_code=409)
 
     now = datetime.now(timezone.utc)
-    total_users_count = db.users.count_documents({}) + 1
+    total_users_count = get_next_sequence_value(db, "user_id")
     user_custom_id = generate_user_id("school", total_users_count)
 
     # Create user with status 'pending'
@@ -92,11 +95,11 @@ def register_school():
     user_result = db.users.insert_one(user_doc)
     user_id = user_result.inserted_id
 
-    # Server-generated unique School ID (e.g. AFIP-SCH-000001)
-    school_count = db.schools.count_documents({}) + 1
+    # Server-generated unique School ID (e.g. AFIP-SCH-000001) using atomic sequence
+    school_count = get_next_sequence_value(db, "school_id")
     unique_school_id = generate_school_id(school_count)
     while db.schools.find_one({"school_custom_id": unique_school_id}):
-        school_count += 1
+        school_count = get_next_sequence_value(db, "school_id")
         unique_school_id = generate_school_id(school_count)
 
     # Create school document with UDISE verification status
@@ -263,15 +266,15 @@ def create_school_mentor():
 
     now = datetime.now(timezone.utc)
 
-    # Server-generated unique Mentor ID (e.g. AFIP-MEN-000123)
-    mentor_count = db.mentors.count_documents({}) + 1
+    # Server-generated unique Mentor ID (e.g. AFIP-MEN-000123) using atomic sequence
+    mentor_count = get_next_sequence_value(db, "mentor_id")
     mentor_custom_id = generate_mentor_id(mentor_count)
     while db.mentors.find_one({"mentor_custom_id": mentor_custom_id}):
-        mentor_count += 1
+        mentor_count = get_next_sequence_value(db, "mentor_id")
         mentor_custom_id = generate_mentor_id(mentor_count)
 
     # Create user record
-    total_users_count = db.users.count_documents({}) + 1
+    total_users_count = get_next_sequence_value(db, "user_id")
     user_custom_id = generate_user_id("mentor", total_users_count)
     user_doc = {
         "user_id": user_custom_id,

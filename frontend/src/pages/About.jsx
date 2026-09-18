@@ -107,7 +107,7 @@ const About = () => {
         </section>
 
         {/* Measurable Program Outcomes */}
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+        {/* <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl font-extrabold text-slate-900">Target Program Outcomes</h2>
             <p className="text-sm text-slate-600 mt-2">Tangible pedagogical, technological, and social milestones.</p>
@@ -124,7 +124,7 @@ const About = () => {
               </div>
             ))}
           </div>
-        </section>
+        </section> */}
       </main>
 
       <Footer />

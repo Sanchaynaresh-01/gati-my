@@ -130,7 +130,7 @@ const Home = () => {
         <InnovationThemes />
 
         {/* 7. PRIZES & AWARDS */}
-        <PrizesPreview />
+        {/* <PrizesPreview /> */}
 
         {/* 8. STATE LEADERBOARD PREVIEW */}
         <LeaderboardPreview />

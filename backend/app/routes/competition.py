@@ -2,6 +2,7 @@ from datetime import datetime
 from flask import Blueprint, request
 from app.utils.db import get_db
 from app.utils.helpers import api_response, api_error
+from app.utils.cache import cache_response, invalidate_cache_prefix
 
 competition_bp = Blueprint("competition", __name__, url_prefix="/api/v1/competition")
 
@@ -165,6 +166,7 @@ def get_or_initialize_competition_rounds(db=None):
     return annotated_rounds, current_stage, active_round_obj
 
 @competition_bp.route("/rounds", methods=["GET"], strict_slashes=False)
+@cache_response(ttl_seconds=300, key_prefix="competition_rounds")
 def get_competition_rounds():
     """Public endpoint to fetch competition rounds, active stage, and dates."""
     try:
@@ -223,6 +225,7 @@ def update_round_dates_public():
         except Exception:
             pass
 
+    invalidate_cache_prefix("competition_rounds")
     annotated_rounds, current_stage, active_round = get_or_initialize_competition_rounds(db)
     return api_response(
         message=f"Dates for '{updated_name}' successfully updated to '{new_dates}'.",
@@ -265,6 +268,7 @@ def alter_active_round_public():
         except Exception:
             pass
 
+    invalidate_cache_prefix("competition_rounds")
     annotated_rounds, current_stage, active_round = get_or_initialize_competition_rounds(db)
     return api_response(
         message=f"Active competition round successfully set to '{active_round.get('name', active_round_id)}'.",

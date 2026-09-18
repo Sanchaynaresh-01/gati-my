@@ -4,7 +4,8 @@ from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
 from app.utils.db import get_db, parse_object_id, serialize_doc
 from app.utils.helpers import (
     api_response, api_error, generate_team_code, generate_hierarchical_team_id,
-    generate_student_id, generate_mentor_id, generate_user_id, hash_password
+    generate_student_id, generate_mentor_id, generate_user_id, hash_password,
+    get_next_sequence_value
 )
 from app.middleware.auth_middleware import role_required
 from app.utils.audit import log_audit_event
@@ -84,11 +85,11 @@ def create_team():
     assigned_mentor_id = mentor["_id"]
     assigned_mentor_name = mentor.get("full_name", "")
 
-    # Server-generated unique Team ID and Code
-    count = db.teams.count_documents({}) + 1
+    # Server-generated unique Team ID and Code using atomic sequence
+    count = get_next_sequence_value(db, "team_code")
     team_code = generate_team_code(count)
     while db.teams.find_one({"team_code": team_code}):
-        count += 1
+        count = get_next_sequence_value(db, "team_code")
         team_code = generate_team_code(count)
 
     school_teams_count = db.teams.count_documents({"school_id": school["_id"]}) + 1
@@ -122,7 +123,7 @@ def create_team():
     leader_user = db.users.find_one({"email": leader_email})
     if not leader_user:
         default_pwd = data.get("leader_password") or "Student@123"
-        total_u = db.users.count_documents({}) + 1
+        total_u = get_next_sequence_value(db, "user_id")
         u_custom_id = generate_user_id("student", total_u)
         user_res = db.users.insert_one({
             "user_id": u_custom_id,
@@ -141,7 +142,7 @@ def create_team():
     else:
         leader_user_id = leader_user["_id"]
 
-    stu_count = db.students.count_documents({}) + 1
+    stu_count = get_next_sequence_value(db, "student_id")
     leader_stu_id = generate_student_id(stu_count)
     leader_doc = {
         "student_custom_id": leader_stu_id,
@@ -176,7 +177,7 @@ def create_team():
         if m_email:
             existing = db.users.find_one({"email": m_email})
             if not existing:
-                tot_u = db.users.count_documents({}) + 1
+                tot_u = get_next_sequence_value(db, "user_id")
                 m_u_custom = generate_user_id("student", tot_u)
                 u_res = db.users.insert_one({
                     "user_id": m_u_custom,
@@ -195,7 +196,7 @@ def create_team():
             else:
                 m_user_id = existing["_id"]
 
-        stu_count = db.students.count_documents({}) + 1
+        stu_count = get_next_sequence_value(db, "student_id")
         m_stu_id = generate_student_id(stu_count)
         db.students.insert_one({
             "student_custom_id": m_stu_id,
@@ -445,7 +446,7 @@ def add_team_member(team_id):
     if email:
         existing = db.users.find_one({"email": email})
         if not existing:
-            tot_u = db.users.count_documents({}) + 1
+            tot_u = get_next_sequence_value(db, "user_id")
             m_u_custom = generate_user_id("student", tot_u)
             u_res = db.users.insert_one({
                 "user_id": m_u_custom,
@@ -464,7 +465,7 @@ def add_team_member(team_id):
         else:
             m_user_id = existing["_id"]
 
-    stu_count = db.students.count_documents({}) + 1
+    stu_count = get_next_sequence_value(db, "student_id")
     m_stu_id = generate_student_id(stu_count)
     new_member = {
         "student_custom_id": m_stu_id,

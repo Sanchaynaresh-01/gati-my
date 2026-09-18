@@ -87,11 +87,30 @@ def list_schools():
             {"official_email": {"$regex": search, "$options": "i"}}
         ]
 
-    schools = list(db.schools.find(query).sort("created_at", -1))
+    try:
+        page = max(1, int(request.args.get("page", 1)))
+        limit = min(100, max(1, int(request.args.get("limit", 50))))
+    except (ValueError, TypeError):
+        page, limit = 1, 50
+
+    schools_cursor = db.schools.find(query).sort("created_at", -1)
+    if "page" in request.args or "limit" in request.args:
+        schools_cursor = schools_cursor.skip((page - 1) * limit).limit(limit)
+    schools = list(schools_cursor)
+
+    school_ids = [s["_id"] for s in schools]
+    team_counts = {
+        item["_id"]: item["count"]
+        for item in db.teams.aggregate([
+            {"$match": {"school_id": {"$in": school_ids}}},
+            {"$group": {"_id": "$school_id", "count": {"$sum": 1}}}
+        ])
+    }
+
     enriched = []
     for s in schools:
         s_doc = serialize_doc(s)
-        s_doc["teams_count"] = db.teams.count_documents({"school_id": s["_id"]})
+        s_doc["teams_count"] = team_counts.get(s["_id"], 0)
         enriched.append(s_doc)
 
     return api_response(data=enriched)
@@ -100,11 +119,30 @@ def list_schools():
 @role_required("admin")
 def list_pending_schools():
     db = get_db()
-    pending_schools = list(db.schools.find({"status": "pending"}).sort("created_at", -1))
+    try:
+        page = max(1, int(request.args.get("page", 1)))
+        limit = min(100, max(1, int(request.args.get("limit", 50))))
+    except (ValueError, TypeError):
+        page, limit = 1, 50
+
+    pending_cursor = db.schools.find({"status": "pending"}).sort("created_at", -1)
+    if "page" in request.args or "limit" in request.args:
+        pending_cursor = pending_cursor.skip((page - 1) * limit).limit(limit)
+    pending_schools = list(pending_cursor)
+
+    school_ids = [s["_id"] for s in pending_schools]
+    team_counts = {
+        item["_id"]: item["count"]
+        for item in db.teams.aggregate([
+            {"$match": {"school_id": {"$in": school_ids}}},
+            {"$group": {"_id": "$school_id", "count": {"$sum": 1}}}
+        ])
+    }
+
     enriched = []
     for s in pending_schools:
         s_doc = serialize_doc(s)
-        s_doc["teams_count"] = db.teams.count_documents({"school_id": s["_id"]})
+        s_doc["teams_count"] = team_counts.get(s["_id"], 0)
         enriched.append(s_doc)
     return api_response(data=enriched)
 

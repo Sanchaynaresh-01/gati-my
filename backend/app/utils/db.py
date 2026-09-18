@@ -75,6 +75,13 @@ def _setup_indexes(db):
             partialFilterExpression={"team_code": {"$type": "string"}}
         )
         db.teams.create_index([("school_id", ASCENDING)])
+        db.teams.create_index([("mentor_id", ASCENDING)])
+        db.teams.create_index([("status", ASCENDING), ("category", ASCENDING)])
+        db.students.create_index([("user_id", ASCENDING)])
+        db.students.create_index([("team_id", ASCENDING)])
+        db.quiz_attempts.create_index([("quiz_id", ASCENDING), ("team_id", ASCENDING)])
+        db.projects.create_index([("team_id", ASCENDING)])
+        db.projects.create_index([("is_showcased", ASCENDING)])
         db.evaluation_assignments.create_index(
             [("project_id", ASCENDING), ("evaluator_id", ASCENDING)], unique=True
         )

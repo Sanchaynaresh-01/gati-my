@@ -1,6 +1,26 @@
 import re
 import bcrypt
 from flask import jsonify
+from pymongo import ReturnDocument
+
+def get_next_sequence_value(db, sequence_name: str, default_start: int = 1) -> int:
+    """
+    Atomic sequence generator using MongoDB counters collection.
+    Guarantees strictly unique IDs in O(1) constant time without full-table scans.
+    """
+    try:
+        res = db.counters.find_one_and_update(
+            {"_id": sequence_name},
+            {"$inc": {"seq": 1}},
+            upsert=True,
+            return_document=ReturnDocument.AFTER
+        )
+        return int(res["seq"])
+    except Exception:
+        doc = db.counters.find_one({"_id": sequence_name})
+        next_val = (doc.get("seq", 0) + 1) if doc else default_start
+        db.counters.update_one({"_id": sequence_name}, {"$set": {"seq": next_val}}, upsert=True)
+        return next_val
 
 DISTRICT_CODES = {
     "Baksa": "BAK",

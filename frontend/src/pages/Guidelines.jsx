@@ -115,7 +115,7 @@ const Guidelines = () => {
           </div>
 
           {/* Section 4: Evaluation Rubric (7 Criteria - 100 Marks) */}
-          <div className="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-xs">
+          {/* <div className="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-xs">
             <div className="flex items-center justify-between gap-4 mb-4">
               <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
                 <Award className="w-6 h-6 text-emerald-700" />
@@ -139,7 +139,7 @@ const Guidelines = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
 
           {/* Section 5: Code of Conduct */}
           <div className="p-8 rounded-3xl bg-slate-900 text-white shadow-xl">

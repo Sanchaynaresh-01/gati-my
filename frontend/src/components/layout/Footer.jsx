@@ -65,7 +65,7 @@ const Footer = () => {
           </div>
 
           {/* Column 5: Support & Contact */}
-          <div>
+          {/* <div>
             <h4 className="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-4">
               Secretariat Support
             </h4>
@@ -82,7 +82,7 @@ const Footer = () => {
                 Mission Directorate, Samagra Shiksha, Kahilipara, Guwahati, Assam 781019
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Bottom Section */}

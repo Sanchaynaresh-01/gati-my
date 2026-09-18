@@ -48,12 +48,12 @@ async function runTests() {
   await recordTest('1. Homepage Branding, Hero & Navbar', async () => {
     await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle' });
     const title = await page.title();
-    if (!title.includes('Brahmaputra Innovation Challenge')) {
-      throw new Error(`Expected title to contain 'Brahmaputra Innovation Challenge', got: '${title}'`);
+    if (!title.includes('Seva First Innovation Challenge - Assam school hackathon')) {
+      throw new Error(`Expected title to contain 'Seva First Innovation Challenge - Assam school hackathon', got: '${title}'`);
     }
 
     const heroText = await page.locator('h1').innerText();
-    if (!heroText.includes('Brahmaputra Innovation Challenge') || !heroText.includes('Viksit Assam and Viksit Bharat 2047')) {
+    if (!heroText.includes('Seva First Innovation Challenge - Assam school hackathon') || !heroText.includes('Viksit Assam and Viksit Bharat 2047')) {
       throw new Error(`Hero heading mismatch: ${heroText}`);
     }
 

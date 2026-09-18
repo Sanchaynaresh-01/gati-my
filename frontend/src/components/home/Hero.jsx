@@ -174,7 +174,7 @@ const Hero = () => {
           {/* RHINO PHOTO — SVG filter removes white bg pixels regardless of stacking context */}
           <div className="relative w-full" style={{
             zIndex: "-1",
-            position:"relative",
+            position: "relative",
             left: "5%"
           }}>
             <img
@@ -183,7 +183,7 @@ const Hero = () => {
               className="w-full h-auto object-contain"
               style={{
                 filter: 'url(#rhino-remove-white) contrast(1.05) saturate(1.08)',
-                
+
               }}
               draggable={false}
             />
@@ -218,7 +218,7 @@ const Hero = () => {
           >
             <span className="flex h-2 w-2 rounded-full bg-emerald-600 animate-pulse" />
             <span className="text-xs font-semibold text-slate-700">
-              Joint Initiative of <strong className="text-emerald-900 font-bold">Innovation hub for cobotics (IHFC)</strong> &amp; <strong className="text-amber-800 font-bold">ASOM, Assam</strong>
+              Joint Initiative by <strong className="text-emerald-900 font-bold">Samagra Shiksha Axom</strong> &amp; <strong className="text-amber-800 font-bold">I-Hub Foundation for Cobotics (IHFC)</strong>
             </span>
           </motion.div>
 
@@ -232,7 +232,7 @@ const Hero = () => {
               Student Innovation Challenge
             </div>
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.15]">
-              Brahmaputra Innovation Challenge <br />
+              Seva First Innovation Challenge  Assam school hackathon <br />
               <span className="bg-gradient-to-r from-emerald-800 via-teal-700 to-amber-600 bg-clip-text text-transparent text-2xl sm:text-4xl lg:text-5xl block mt-2">
                 Viksit Assam and Viksit Bharat 2047
               </span>
